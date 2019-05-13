@@ -1,0 +1,21 @@
+<h3>Template Driven Form Example</h3>
+
+<div class="form">
+  <form #regForm='ngForm' (ngSubmit)="onClickSubmit(regForm)">
+    <div>
+      <input type="text" placeholder="First name" name="fname" [(ngModel)]="formModel.fname" #fname=ngModel required>
+      <span *ngIf="fname.invalid && fname.touched">This field is mandatory</span>
+    </div>
+    <div>
+      <input type="text" placeholder="Last name" name="lname" [(ngModel)]="formModel.lname" #lname=ngModel required>
+      <span *ngIf="lname.invalid && lname.touched">This field is mandatory</span>
+    </div>
+    <div>
+      <input type="text" placeholder="Email ID" name="email" [(ngModel)]="formModel.email" #email=ngModel required email>
+      <span *ngIf="email.errors && email.errors.required && email.touched">This field is mandatory</span>
+      <span *ngIf="email.errors && email.errors.email && email.touched">Please enter valid email id</span>
+    </div>
+    <div><button type="submit">Submit</button></div>
+    Form data: {{formModel | json}}
+  </form>
+</div>
